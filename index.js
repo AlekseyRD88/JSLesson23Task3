@@ -32,11 +32,15 @@ renderTasks(tasks);
 let newClick = document.querySelector('.create-task-btn');
 function addTask() {
   let inputElem = document.querySelector('.task-input').value;
-  let temp = {};
-  temp.text = inputElem;
-  temp.done = false;
-  tasks.push(temp);
-  renderTasks(tasks);
-  inputElem = '';
+  if (inputElem == '') {
+    return null;
+  } else {
+    let temp = {};
+    temp.text = inputElem;
+    temp.done = false;
+    tasks.push(temp);
+    renderTasks(tasks);
+    inputElem = '';
+  }
 }
 newClick.addEventListener('click', addTask);
