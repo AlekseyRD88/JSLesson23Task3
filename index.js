@@ -28,7 +28,7 @@ const renderTasks = (tasksList) => {
 
   listElem.append(...tasksElems);
 };
-
+renderTasks(tasks);
 let newClick = document.querySelector('.create-task-btn');
 function addTask() {
   let inputElem = document.querySelector('.task-input').value;
@@ -36,8 +36,7 @@ function addTask() {
   temp.text = inputElem;
   temp.done = false;
   tasks.push(temp);
-  localStorage.setItem('todo', JSON.stringify(tasks));
+  renderTasks(tasks);
   inputElem = '';
 }
 newClick.addEventListener('click', addTask);
-renderTasks(tasks);
