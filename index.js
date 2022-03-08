@@ -36,6 +36,7 @@ function addTask() {
   temp.text = inputElem;
   temp.done = false;
   tasks.push(temp);
+  localStorage.setItem('todo', JSON.stringify(tasks));
   inputElem = '';
 }
 newClick.addEventListener('click', addTask);
