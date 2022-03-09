@@ -31,16 +31,15 @@ const renderTasks = (tasksList) => {
 renderTasks(tasks);
 let newClick = document.querySelector('.create-task-btn');
 function addTask() {
+  let li = document.createElement('li');
   let inputElem = document.querySelector('.task-input').value;
+  let t = document.createTextNode(inputElem);
+  li.appendChild(t);
   if (inputElem == '') {
     return null;
   } else {
-    let temp = {};
-    temp.text = inputElem;
-    temp.done = false;
-    tasks.push(temp);
-    renderTasks(tasks);
-    inputElem = '';
+    listElem.appendChild(li);
   }
+  document.querySelector('.task-input').value = '';
 }
 newClick.addEventListener('click', addTask);
