@@ -39,7 +39,7 @@ function addTask() {
     let temp = {};
     temp.text = inputElem;
     temp.done = false;
-
+    tasks.forEach((n, i) => (n.id = i + 1));
     tasks.push(temp);
     listElem.innerHTML = null;
     renderTasks(tasks);
