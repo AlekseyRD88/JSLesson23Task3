@@ -16,6 +16,7 @@ const renderTasks = (tasksList) => {
       listItemElem.classList.add('list__item');
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
+      checkbox.setAttribute('data-id', 'id');
       checkbox.checked = done;
       checkbox.classList.add('list__item-checkbox');
       if (done) {
@@ -39,11 +40,19 @@ function addTask() {
     let temp = {};
     temp.text = inputElem;
     temp.done = false;
-    tasks.forEach((n, i) => (n.id = i + 1));
     tasks.push(temp);
     listElem.innerHTML = null;
     renderTasks(tasks);
     inputElem = '';
   }
 }
+tasks.forEach((o, i) => (o.id = i + 1));
 newClick.addEventListener('click', addTask);
+
+let changeCheckbox = document.querySelector('checkbox');
+changeCheckbox.forEach((elem) => {
+  let searchableId = elem.dataset.id;
+  if (tasks.filter((x) => JSON.stringify(x.id) === searchableId)) {
+    x.done === true;
+  }
+});
