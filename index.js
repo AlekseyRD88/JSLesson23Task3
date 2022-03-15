@@ -50,9 +50,11 @@ tasks.forEach((o, i) => (o.id = i + 1));
 newClick.addEventListener('click', addTask);
 
 let changeCheckbox = document.querySelector('checkbox');
-changeCheckbox.forEach((elem) => {
+const checkboxTrue = () => {
   let searchableId = elem.dataset.id;
   if (tasks.filter((x) => JSON.stringify(x.id) === searchableId)) {
     x.done === true;
   }
-});
+};
+
+changeCheckbox.addEventListener('click', checkboxTrue);
