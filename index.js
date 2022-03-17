@@ -11,12 +11,12 @@ const listElem = document.querySelector('.list');
 const renderTasks = (tasksList) => {
   const tasksElems = tasksList
     .sort((a, b) => a.done - b.done)
-    .map(({ text, done }) => {
+    .map(({ text, done, id }) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
-      checkbox.setAttribute('data-id', 'tasks[i].id');
+      checkbox.setAttribute('data-id', id);
       checkbox.checked = done;
       checkbox.classList.add('list__item-checkbox');
       if (done) {
@@ -49,10 +49,10 @@ function addTask() {
 }
 newClick.addEventListener('click', addTask);
 
-let changeCheckbox = document.querySelector('li');
-const checkboxTrue = () => {
-  let searchableId = li.dataset.id;
-  tasks.filter((task) => task.id === searchableId).map((task) => (task.done = true));
-};
+let checkbox = document.querySelector('input[name=checkbox]');
+function checkboxTrue() {
+  let dataId = this.input.dataset.id;
+  tasks.filter((task) => task.id === dataId).map((task) => (task.done = true));
+}
 
-changeCheckbox.addEventListener('click', checkboxTrue);
+checkbox.addEventListener('click', checkboxTrue);
