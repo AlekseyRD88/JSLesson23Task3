@@ -49,10 +49,15 @@ function addTask() {
 }
 newClick.addEventListener('click', addTask);
 
-let checkbox = document.querySelector('input[name=checkbox]');
-function checkboxTrue() {
-  let dataId = this.input.dataset.id;
-  tasks.filter((task) => task.id === dataId).map((task) => (task.done = true));
-}
+let checkbox = document.querySelector('checkbox');
+const checkboxTrue = (event) => {
+  const isCheckbox = event.target.classList.contains('list__item-checkbox');
+  if (!isCheckbox) {
+    return;
+  }
+  const taskId = tasks.find((task) => task.id === event.target.dataset.id);
+  Object.assign(taskId, { done: event.target.checked });
+  renderTasks(tasks);
+};
 
 checkbox.addEventListener('click', checkboxTrue);
