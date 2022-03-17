@@ -49,7 +49,7 @@ function addTask() {
 }
 newClick.addEventListener('click', addTask);
 
-let checkbox = document.querySelector('checkbox');
+/*let checkbox = document.querySelector('checkbox');
 const checkboxTrue = (event) => {
   const isCheckbox = event.target.classList.contains('list__item-checkbox');
   if (!isCheckbox) {
@@ -60,4 +60,4 @@ const checkboxTrue = (event) => {
   renderTasks(tasks);
 };
 
-checkbox.addEventListener('click', checkboxTrue);
+checkbox.addEventListener('click', checkboxTrue);*/
