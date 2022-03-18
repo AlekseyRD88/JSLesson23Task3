@@ -49,15 +49,16 @@ function addTask() {
 }
 newClick.addEventListener('click', addTask);
 
-//let checkbox = document.querySelector('input[type=checkbox]');
-const checkboxTrue = (event) => {
-  const isCheckbox = event.target.classList.contains('list__item-checkbox');
+let checkbox = document.querySelector('.list');
+
+const checkboxTrue = (e) => {
+  const isCheckbox = e.target.classList.contains('list__item-checkbox');
   if (!isCheckbox) {
     return;
   }
-  const taskId = tasks.find((task) => task.id === event.target.dataset.id);
-  Object.assign(taskId, { done: event.target.checked });
+  const taskData = tasks.find((task) => task.id === e.target.dataset.id);
+  Object.assign(taskData, { done: e.target.checked });
   renderTasks(tasks);
 };
 
-newClick.addEventListener('click', checkboxTrue);
+checkbox.addEventListener('click', checkboxTrue);
