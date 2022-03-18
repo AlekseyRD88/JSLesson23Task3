@@ -44,14 +44,14 @@ const onToggleTask = (e) => {
 };
 listElem.addEventListener('click', onToggleTask);
 
-const addTask = () => {
-  let inputElem = document.querySelector('.task-input');
-  const text = inputElem.value;
+const onCreateTask = () => {
+  const taskTitleInputElem = document.querySelector('.task-input');
+  const text = taskTitleInputElem.value;
 
   if (!text) {
     return;
   }
-  inputElem.value = '';
+  taskTitleInputElem.value = '';
   tasks.push({
     text,
     done: false,
@@ -60,4 +60,4 @@ const addTask = () => {
   renderTasks(tasks);
 };
 const createBtnElem = document.querySelector('.create-task-btn');
-createBtnElem.addEventListener('click', addTask);
+createBtnElem.addEventListener('click', onCreateTask);
