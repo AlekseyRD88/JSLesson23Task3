@@ -1,15 +1,16 @@
 const tasks = [
-  { text: 'Buy milk', done: false, id: 1 },
-  { text: 'Pick up Tom from airport', done: false, id: 2 },
-  { text: 'Visit party', done: false, id: 3 },
-  { text: 'Visit doctor', done: true, id: 4 },
-  { text: 'Buy meat', done: true, id: 5 },
+  { text: 'Buy milk', done: false, id: '1' },
+  { text: 'Pick up Tom from airport', done: false, id: '2' },
+  { text: 'Visit party', done: false, id: '3' },
+  { text: 'Visit doctor', done: true, id: '4' },
+  { text: 'Buy meat', done: true, id: '5' },
 ];
 
 const listElem = document.querySelector('.list');
 
 const renderTasks = (tasksList) => {
   const tasksElems = tasksList
+    .slice()
     .sort((a, b) => a.done - b.done)
     .map(({ text, done, id }) => {
       const listItemElem = document.createElement('li');
@@ -31,27 +32,7 @@ const renderTasks = (tasksList) => {
 };
 renderTasks(tasks);
 
-let newClick = document.querySelector('.create-task-btn');
-function addTask() {
-  let inputElem = document.querySelector('.task-input').value;
-  if (inputElem == '') {
-    return null;
-  } else {
-    let temp = {};
-    temp.text = inputElem;
-    temp.done = false;
-    temp.id = tasks.length + 1;
-    tasks.push(temp);
-    listElem.innerHTML = null;
-    renderTasks(tasks);
-    inputElem = '';
-  }
-}
-newClick.addEventListener('click', addTask);
-
-let checkbox = document.querySelector('.list');
-
-const checkboxTrue = (e) => {
+const onToggleTask = (e) => {
   const isCheckbox = e.target.classList.contains('list__item-checkbox');
   if (!isCheckbox) {
     return;
@@ -60,5 +41,22 @@ const checkboxTrue = (e) => {
   Object.assign(taskData, { done: e.target.checked });
   renderTasks(tasks);
 };
+listElem.addEventListener('click', onToggleTask);
 
-checkbox.addEventListener('click', checkboxTrue);
+const addTask = () => {
+  let inputElem = document.querySelector('.task-input');
+  const text = inputElem.value;
+
+  if (!text) {
+    return;
+  }
+  inputElem.value = '';
+  tasks.push({
+    text,
+    done: false,
+    id: Math.random().toString,
+  });
+  renderTasks(tasks);
+};
+const createBtnElem = document.querySelector('.create-task-btn');
+createBtnElem.addEventListener('click', addTask);
