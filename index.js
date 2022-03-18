@@ -1,3 +1,5 @@
+const listElem = document.querySelector('.list');
+
 const tasks = [
   { text: 'Buy milk', done: false, id: '1' },
   { text: 'Pick up Tom from airport', done: false, id: '2' },
@@ -6,9 +8,8 @@ const tasks = [
   { text: 'Buy meat', done: true, id: '5' },
 ];
 
-const listElem = document.querySelector('.list');
-
 const renderTasks = (tasksList) => {
+  listElem.innerHTML = '';
   const tasksElems = tasksList
     .slice()
     .sort((a, b) => a.done - b.done)
